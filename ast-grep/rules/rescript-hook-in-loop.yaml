@@ -1,0 +1,8 @@
+id: rescript-hook-in-loop
+language: rescript
+severity: error
+message: Violation of rules of hooks
+note: |
+  React Hook may be executed a variable number of times, because it it called in a loop. React Hooks must be called in the exact same order in every component render.
+rule:
+  matches: rescript-hook-in-loop

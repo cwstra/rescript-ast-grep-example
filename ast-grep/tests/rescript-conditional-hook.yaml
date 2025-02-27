@@ -1,0 +1,92 @@
+id: rescript-conditional-hook
+valid:
+  - |
+    @react.component
+    let make = () => {
+      let value = useMyHook()
+      <></>
+    }
+  - |
+    @react.component
+    let make = if debug {
+      () => {
+        let value = 1
+        <></>
+      }
+    } else {
+      () => {
+        let value = useMyHook()
+        <></>
+      }
+    }
+  - |
+    @react.component
+    let make = try {
+      let value = maybeThrow()
+      () => {
+        <></>
+      }
+    } catch {
+      | _ => () => {
+        let value = useMyHook()
+        <></>
+      }
+    }
+  - |
+    @react.component
+    let make = (~variant) => {
+      try {
+        useMyHook()
+      } catch {
+        | _ => Error("Oh no!")
+      }
+      <></>
+    }
+invalid:
+  - |
+    @react.component
+    let make = (~a, ~b) => {
+      let value = if a < b {
+        useMyHook()
+      } else {
+        1
+      }
+      <></>
+    }
+  - |
+    @react.component
+    let make = (~a, ~b) => {
+      let value = a < b ? useMyHook() : 1
+      <></>
+    }
+  - |
+    @react.component
+    let make = (~variant) => {
+      switch variant {
+        | A => useMyHook()
+        | B => 1
+      }
+      <></>
+    }
+  - |
+    @react.component
+    let make = (~variant) => {
+      try {
+        aFunctionThatMightThrow()
+        let res = useMyHook()
+      } catch {
+        | _ => Error("Oh no!")
+      }
+      <></>
+    }
+  - |
+    @react.component
+    let make = (~variant) => {
+      try {
+        aFunctionThatMightThrow()
+        useMyHook()
+      } catch {
+        | _ => Error("Oh no!")
+      }
+      <></>
+    }

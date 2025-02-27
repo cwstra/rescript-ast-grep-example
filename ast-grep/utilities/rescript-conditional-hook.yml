@@ -1,0 +1,25 @@
+id: rescript-conditional-hook
+language: rescript
+rule:
+  all:
+    - matches: rescript-hook-call
+    - matches: rescript-in-valid-hook-context
+    - any:
+      - inside:
+          any:
+            - kind: if_expression
+            - kind: switch_expression
+            - kind: ternary_expression
+          stopBy:
+            kind: function
+      - inside:
+          kind: try_expression
+          stopBy:
+            kind: function
+        not:
+          any:
+            - inside:
+                kind: expression_statement
+                nthChild: 1
+            - kind: expression_statement
+              nthChild: 1

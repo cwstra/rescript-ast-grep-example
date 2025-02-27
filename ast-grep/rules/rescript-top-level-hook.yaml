@@ -1,0 +1,8 @@
+id: rescript-top-level-hook
+language: rescript
+severity: error
+message: Violation of rules of hooks
+note: |
+  React hooks cannot be called at the top level. React Hooks must be called in a React function component or a custom React Hook function.
+rule:
+  matches: rescript-top-level-hook

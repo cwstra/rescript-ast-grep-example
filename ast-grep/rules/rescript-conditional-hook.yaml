@@ -1,0 +1,8 @@
+id: rescript-conditional-hook
+language: rescript
+severity: error
+message: Violation of rules of hooks
+note: |
+  React Hook is called conditionally. React Hooks must be called in the exact same order in every component render.
+rule:
+  matches: rescript-conditional-hook

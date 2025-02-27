@@ -1,0 +1,7 @@
+id: rescript-top-level
+language: rescript
+rule:
+  not:
+    inside:
+      kind: function
+      stopBy: end

@@ -1,0 +1,4 @@
+id: rescript-hook-name
+language: rescript
+rule:
+  regex: ^(\w+\.)*use\w+$

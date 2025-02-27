@@ -1,0 +1,41 @@
+id: rescript-hook-inside-invalid-function
+valid:
+  - |
+    @react.component
+    let make = () => {
+      useMyHook()
+      <></>
+    }
+  - |
+    @react.component
+    let make = () => {
+      let useWrappedHook = () => {
+        useMyHook()
+      }
+      useWrappedHook()
+      <></>
+    }
+invalid:
+  - |
+    @react.component
+    let make = () => {
+      () => {
+        useMyHook()
+      }
+      <></>
+    }
+  - |
+    @react.component
+    let make = () => {
+      <button onClick={() => useMyHook()}></button>
+    }
+  - |
+    @react.component
+    let make = () => {
+      let useWrappedHook = () => {
+        () => {
+          useMyHook()
+        }
+      }
+      <></>
+    }

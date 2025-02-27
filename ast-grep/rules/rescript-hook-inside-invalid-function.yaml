@@ -1,0 +1,12 @@
+id: rescript-hook-inside-invalid-function
+language: rescript
+severity: error
+message: Violation of rules of hooks
+note: |
+  React Hook is called in function that is neither a React function component nor a custom React Hook function. A React component must be named make and decorated with @react.component. React Hook names must start with the word "use".
+rule:
+  matches: rescript-hook-call
+  not:
+    any:
+      - matches: rescript-top-level
+      - matches: rescript-in-valid-hook-context

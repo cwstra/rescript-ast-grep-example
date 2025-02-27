@@ -1,0 +1,27 @@
+id: rescript-top-level-hook
+valid:
+  - |
+    @react.component
+    let make = () => {
+      let (state, setState) = React.useState(1)
+      <></>
+    }
+  - |
+    @react.component
+    let make = () => {
+      let value = useTopLevelHook(1)
+      <></>
+    }
+  - |
+    @react.component
+    let make = () => {
+      React.useEffect(() => Console.log("Hello!"), [])
+      <></>
+    }
+invalid:
+  - |
+    let (state, setState) = React.useState(1)
+  - |
+    let value = useTopLevelHook(1)
+  - |
+    React.useEffect(() => Console.log("Hello!"), [])
