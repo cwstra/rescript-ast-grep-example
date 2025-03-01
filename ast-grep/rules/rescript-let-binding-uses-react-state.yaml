@@ -1,0 +1,15 @@
+id: rescript-let-binding-uses-react-state
+language: rescript
+severity: off
+message: Let binding uses react state
+note: |
+  Used for testing ast-grep utility. Turn off when linting real code.
+rule:
+  pattern: testValue
+  matches: rescript-let-binding-uses-react-state
+  has:
+    matches: rescript-let-binding-pattern
+    any:
+      - pattern: testValue
+      - has:
+          pattern: testValue

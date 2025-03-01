@@ -1,37 +1,53 @@
 id: rescript-is-react-state-reference
 language: rescript
 rule:
-  kind: value_identifier
-  pattern: $NAME
-  matches: is-not-binding
-  inside:
-    stopBy:
-      kind: function
-    any:
-      # - inside:
-      #     kind: block
-      #     nthChild: 2
-      #     inside:
-      #       kind: function
-      #   follows:
-      #     matches: has-name-binding
-      #     stopBy: end
-      - nthChild: 2
-        inside:
-          kind: function
-          # has:
-          #   nthChild: 1
-          #   matches: has-name-binding
+  matches: name-identifier
+  not:
+    inside:
+      stopBy:
+        kind: let_binding
+      matches: rescript-let-binding-pattern
+  any:
+    - inside:
+        matches: surrounding-let-binding
+        follows:
+          stopBy:
+            kind: let_binding
+            has:
+              matches: name-binding
+          matches: rescript-let-binding-uses-react-state
+          has:
+            matches: name-binding
+    - matches: prop-bound
 utils:
-  is-not-binding:
+  name-identifier:
+    kind: value_identifier
+    pattern: $NAME
+  name-binding:
+    nthChild: 1
+    any:
+      - matches: name-identifier
+      - has:
+          matches: name-identifier
+          stopBy: end
+  surrounding-let-binding:
+    kind: let_binding
+    matches: rescript-in-react-function-context
+  prop-bound:
     not:
-      any:
-        - matches: rescript-let-binding-pattern
-        - inside:
-            matches: rescript-let-binding-pattern
-            stopBy:
-              kind: let_binding
-  has-name-binding:
-    has:
-      matches: rescript-is-react-state-binding
-      pattern: $NAME
+      inside:
+        stopBy:
+          kind: let_binding
+        matches: surrounding-let-binding
+        follows:
+          matches: rescript-let-binding-uses-react-state
+          has:
+            matches: name-binding
+            stopBy: end
+    inside:
+      stopBy:
+        kind: function
+      matches: rescript-is-react-function-context
+      has:
+        matches: name-binding
+        stopBy: end

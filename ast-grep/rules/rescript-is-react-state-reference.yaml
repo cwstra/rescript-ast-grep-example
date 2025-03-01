@@ -1,6 +1,6 @@
 id: rescript-is-react-state-reference
 language: rescript
-severity: info
+severity: off
 message: Is react data reference
 note: |
   Used for testing ast-grep utility. Turn off when linting real code.

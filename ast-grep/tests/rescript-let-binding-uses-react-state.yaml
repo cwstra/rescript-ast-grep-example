@@ -1,8 +1,7 @@
-id: rescript-is-react-state-binding
+id: rescript-let-binding-uses-react-state
 valid:
   - |
     let testValue = 1
-    let useMyHook = () => <></>
   - |
     let useMyHook = () => {
       let testValue = 1
@@ -11,20 +10,11 @@ valid:
     let useMyOuterHook = () => {
       let testValue = useMyInnerHook
     }
-invalid:
   - |
-    let useMyOuterHook = () => {
-      let testValue = useMyInnerHook()
+    let useMyOuterHook = (~value) => {
+      let testValue = value => value
     }
-  - |
-    let useMyOuterHook = (testValue) => ()
-  - |
-    let useMyOuterHook = (~testValue) => ()
-  - |
-    let useMyOuterHook = ({testValue}) => ()
-  - |
-    @react.component
-    let make = (~testValue) => <></>
+invalid:
   - |
     let useMyOuterHook = () => {
       let testValue = useMyInnerHook()
@@ -32,6 +22,10 @@ invalid:
   - |
     let useMyOuterHook = () => {
       let testValue = { value: useMyInnerHook() }
+    }
+  - |
+    let useMyOuterHook = (~value) => {
+      let testValue = value
     }
   - |
     let useMyOuterHook = () => {

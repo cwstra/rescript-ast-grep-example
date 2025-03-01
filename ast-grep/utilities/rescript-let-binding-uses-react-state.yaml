@@ -1,0 +1,18 @@
+id: rescript-let-binding-uses-react-state
+language: rescript
+rule:
+  matches: rescript-in-react-function-context
+  kind: let_binding
+  has:
+    nthChild: 2
+    any:
+      - matches: is-reference-or-hook
+      - has:
+          stopBy:
+            matches: rescript-is-react-function-context
+          matches: is-reference-or-hook
+utils:
+  is-reference-or-hook:
+    any:
+      - matches: rescript-hook-call
+      - matches: rescript-is-react-state-reference

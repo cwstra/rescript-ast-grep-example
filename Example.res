@@ -1,7 +1,4 @@
-let useMyOuterHook = () => {
-  let [testValue] = useMyInnerHook()
-  let (testValue, a) = useMyInnerHook()
-  let {testValue} = useMyInnerHook()
-  let a = testValue
-  useMyInnerHook()
-}
+    let useMyHook = (testValue) => {
+      let testValue = 1
+      <>{testValue}</>
+    }

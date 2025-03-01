@@ -31,6 +31,21 @@ valid:
     }
   - |
     @react.component
+    let make = (~variant) => {
+      switch useMyHook() {
+        | A => 2
+        | B => 1
+      }
+      <></>
+    }
+  - |
+    @react.component
+    let make = (~a, ~b) => {
+      let value = useMyHook() ? 2 : 1
+      <></>
+    }
+  - |
+    @react.component
     let make = try {
       let value = maybeThrow()
       () => {

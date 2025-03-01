@@ -5,10 +5,20 @@ valid:
     let useMyHook = () => {
       <>{testValue}</>
     }
+  - |
+    let useMyHook = (testValue) => {
+      let testValue = 1
+      <>{testValue}</>
+    }
 invalid:
   - |
     let useMyOuterHook = ({testValue}) => testValue
   - |
     let useMyOuterHook = ({testValue}) => {
       let a = testValue
+    }
+  - |
+    let useMyOuterHook = ({a}) => {
+      let testValue = a
+      let b = testValue
     }

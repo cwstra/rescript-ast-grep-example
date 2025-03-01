@@ -5,11 +5,9 @@ rule:
     - matches: rescript-hook-call
     - matches: rescript-in-react-function-context
     - any:
+      - matches: invalid-if-switch-position
       - inside:
-          any:
-            - kind: if_expression
-            - kind: switch_expression
-            - kind: ternary_expression
+          matches: invalid-if-switch-position
           stopBy:
             kind: function
       - inside:
@@ -19,7 +17,17 @@ rule:
         not:
           any:
             - inside:
-                kind: expression_statement
-                nthChild: 1
-            - kind: expression_statement
-              nthChild: 1
+                matches: invalid-try-position
+            - matches: invalid-try-position
+utils:
+  invalid-try-position:
+    kind: expression_statement
+    nthChild: 1
+  invalid-if-switch-position:
+    not:
+      nthChild: 1
+    inside:
+      any:
+        - kind: if_expression
+        - kind: switch_expression
+        - kind: ternary_expression

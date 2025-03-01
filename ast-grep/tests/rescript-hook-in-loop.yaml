@@ -1,6 +1,12 @@
 id: rescript-hook-in-loop
 valid:
   - |
+    let useNewHook = () => {
+      for i in useMyHook() to 3 {
+        Console.log("Hello!")
+      }
+    }
+  - |
     let useInitialHook = () => {}
     let hookRef = ref(useInitialHook)
     for x in 1 to 3 {
@@ -29,6 +35,12 @@ invalid:
     let useNewHook = () => {
       for i in 1 to 3 {
         useMyHook()
+      }
+    }
+  - |
+    let useNewHook = () => {
+      for i in 1 to useMyHook() {
+        Console.log("Here")
       }
     }
   - |
