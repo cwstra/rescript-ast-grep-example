@@ -1,0 +1,14 @@
+id: rescript-is-react-state-reference
+valid:
+  - |
+    let testValue = 1
+    let useMyHook = () => {
+      <>{testValue}</>
+    }
+invalid:
+  - |
+    let useMyOuterHook = ({testValue}) => testValue
+  - |
+    let useMyOuterHook = ({testValue}) => {
+      let a = testValue
+    }

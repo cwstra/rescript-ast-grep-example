@@ -1,0 +1,7 @@
+id: rescript-in-react-function-context
+language: rescript
+rule:
+  inside:
+    stopBy:
+      kind: function
+    matches: rescript-is-react-function-context

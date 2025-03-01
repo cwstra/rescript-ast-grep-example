@@ -1,0 +1,9 @@
+id: rescript-is-react-state-reference
+language: rescript
+severity: info
+message: Is react data reference
+note: |
+  Used for testing ast-grep utility. Turn off when linting real code.
+rule:
+  pattern: testValue
+  matches: rescript-is-react-state-reference

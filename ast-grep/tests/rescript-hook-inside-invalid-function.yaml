@@ -15,6 +15,14 @@ valid:
       useWrappedHook()
       <></>
     }
+  - |
+    let useMyOuterHook = () => {
+      {
+        useMyMiddleHook: () => {
+          useMyInnerHook()
+        }
+      }
+    }
 invalid:
   - |
     @react.component

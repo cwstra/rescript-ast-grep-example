@@ -1,0 +1,40 @@
+id: rescript-is-react-state-binding
+valid:
+  - |
+    let testValue = 1
+    let useMyHook = () => <></>
+  - |
+    let useMyHook = () => {
+      let testValue = 1
+    }
+  - |
+    let useMyOuterHook = () => {
+      let testValue = useMyInnerHook
+    }
+invalid:
+  - |
+    let useMyOuterHook = () => {
+      let testValue = useMyInnerHook()
+    }
+  - |
+    let useMyOuterHook = (testValue) => ()
+  - |
+    let useMyOuterHook = (~testValue) => ()
+  - |
+    let useMyOuterHook = ({testValue}) => ()
+  - |
+    @react.component
+    let make = (~testValue) => <></>
+  - |
+    let useMyOuterHook = () => {
+      let testValue = useMyInnerHook()
+    }
+  - |
+    let useMyOuterHook = () => {
+      let testValue = { value: useMyInnerHook() }
+    }
+  - |
+    let useMyOuterHook = () => {
+      let hook = useMyInnerHook()
+      let testValue = hook
+    }

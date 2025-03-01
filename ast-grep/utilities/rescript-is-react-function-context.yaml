@@ -1,17 +1,19 @@
-id: rescript-in-valid-hook-context
+id: rescript-is-react-function-context
 language: rescript
 rule:
+  kind: function
   inside:
-    stopBy:
-      kind: function
-    kind: function
-    inside:
-      kind: let_binding
-      any:
-        - matches: has_hook_identifier
-        - all:
-            - matches: has_make_identifier
-            - matches: has_component_decorator
+    any:
+      - kind: let_binding
+        any:
+          - matches: has_hook_identifier
+          - all:
+              - matches: has_make_identifier
+              - matches: has_component_decorator
+      - kind: record_field
+        has:
+          kind: property_identifier
+          matches: rescript-hook-name
 utils:
   has_hook_identifier:
     has:

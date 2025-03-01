@@ -1,0 +1,6 @@
+id: rescript-let-binding-pattern
+language: rescript
+rule:
+  inside:
+    kind: let_binding
+  nthChild: 1

@@ -1,0 +1,37 @@
+id: rescript-is-react-state-reference
+language: rescript
+rule:
+  kind: value_identifier
+  pattern: $NAME
+  matches: is-not-binding
+  inside:
+    stopBy:
+      kind: function
+    any:
+      # - inside:
+      #     kind: block
+      #     nthChild: 2
+      #     inside:
+      #       kind: function
+      #   follows:
+      #     matches: has-name-binding
+      #     stopBy: end
+      - nthChild: 2
+        inside:
+          kind: function
+          # has:
+          #   nthChild: 1
+          #   matches: has-name-binding
+utils:
+  is-not-binding:
+    not:
+      any:
+        - matches: rescript-let-binding-pattern
+        - inside:
+            matches: rescript-let-binding-pattern
+            stopBy:
+              kind: let_binding
+  has-name-binding:
+    has:
+      matches: rescript-is-react-state-binding
+      pattern: $NAME

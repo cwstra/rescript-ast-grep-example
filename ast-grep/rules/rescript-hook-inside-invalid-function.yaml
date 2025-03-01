@@ -9,4 +9,4 @@ rule:
   not:
     any:
       - matches: rescript-top-level
-      - matches: rescript-in-valid-hook-context
+      - matches: rescript-in-react-function-context

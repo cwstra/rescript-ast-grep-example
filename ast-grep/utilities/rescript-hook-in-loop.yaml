@@ -3,7 +3,7 @@ language: rescript
 rule:
   all:
     - matches: rescript-hook-call
-    - matches: rescript-in-valid-hook-context
+    - matches: rescript-in-react-function-context
     - inside:
         any:
           - kind: for_expression

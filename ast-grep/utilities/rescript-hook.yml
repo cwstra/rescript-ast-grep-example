@@ -1,7 +1,0 @@
-id: rescript-hook-call
-language: rescript
-rule:
-  pattern: $HOOK($$$ARGS)
-constraints:
-  HOOK:
-    matches: rescript-hook-name

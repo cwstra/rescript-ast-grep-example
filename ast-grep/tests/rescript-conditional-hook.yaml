@@ -21,6 +21,16 @@ valid:
     }
   - |
     @react.component
+    let make = (~a, ~b) => {
+      let value = if useMyHook() {
+        2
+      } else {
+        1
+      }
+      <></>
+    }
+  - |
+    @react.component
     let make = try {
       let value = maybeThrow()
       () => {

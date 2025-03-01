@@ -1,0 +1,12 @@
+id: rescript-hook-call
+language: rescript
+rule:
+  kind: call_expression
+  has:
+    nthChild: 1
+    any:
+      - kind: value_identifier
+        matches: rescript-hook-name
+      - has:
+          kind: value_identifier
+          matches: rescript-hook-name

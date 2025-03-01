@@ -9,7 +9,8 @@
     "res:dev": "rescript -w",
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "build-parser": "node scripts/Scripts__UpdateTreeSitterBinary.res.mjs"
   },
   "dependencies": {
     "@rescript/core": "^1.6.1",
